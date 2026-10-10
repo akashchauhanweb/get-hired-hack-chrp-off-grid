@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+
+/*
+  FARCAST — editorial / Swiss design system.
+  Reference lineage: print magazine + Swiss grid. Warm paper, big serif display
+  with italic, strict black-&-white with ONE editorial red, hard edges (hard
+  offset shadows, never soft blur), segmented meters, friendly node circles.
+  Playful, not mechanical.
+*/
+
+@theme {
+  --color-paper: #f3f2ed;     /* warm off-white ground */
+  --color-paper-2: #eceae2;   /* inset / topology field */
+  --color-paper-3: #e4e2d9;   /* deeper inset */
+
+  --color-ink: #141414;       /* near-black — text, fills, borders */
+  --color-ink-2: #67665f;     /* secondary labels */
+  --color-ink-3: #9b9a90;     /* muted / placeholders */
+
+  --color-line: #141414;      /* primary border is black */
+  --color-line-soft: #d7d5cb; /* soft hairline divider / idle link */
+
+  --color-accent: #c22a22;    /* editorial red — loss, record, destructive */
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  --radius-sm: 1px;
+  --radius-md: 2px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+}
+[hidden] {
+  display: none !important;
+}
+
+/* Numeric readouts lock to tabular figures so values don't reflow while counting. */
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+.tnum {
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Small-caps grotesque label — the Swiss section marker. */
+.label {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+}
+
+/* Editorial display serif. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+/* Panel: flat paper with a crisp 1px black frame — no soft shadow, ever. */
+.panel {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+/* The one editorial flourish: a hard offset shadow (printed-sticker feel). */
+.hard-shadow {
+  box-shadow: 5px 5px 0 var(--color-ink);
+}
+
+/* Diagonal hatch = the "baseline / placeholder" texture (our print-safe second encoding). */
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-line-soft) 0,
+    var(--color-line-soft) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
